@@ -2,7 +2,7 @@ const express = require("express");
 const errormiddleware = require("./middleware/error");
 const user = require("./routes/userRoute");
 const product = require("./routes/productRoute");
-const order = require("./routes/orderRoute")
+const order = require("./routes/orderRoute");
 const cookieParser = require("cookie-parser");
 
 const app = express();
