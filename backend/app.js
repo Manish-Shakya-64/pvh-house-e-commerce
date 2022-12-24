@@ -4,8 +4,10 @@ const user = require("./routes/userRoute");
 const product = require("./routes/productRoute");
 const order = require("./routes/orderRoute");
 const cookieParser = require("cookie-parser");
+const cors = require('cors')
 
 const app = express();
+app.use(cors({"Access-Control":"Allow-Origin"}))
 app.use(cookieParser());
 app.use(express.json());
 app.use("/api/v1", product);
