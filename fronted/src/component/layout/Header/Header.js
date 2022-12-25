@@ -5,7 +5,7 @@ import {FiShoppingBag} from 'react-icons/fi'
 import {MdAccountBox} from 'react-icons/md'
 
 const options = {
-  burgerColor:"#fff",
+  burgerColor:"#tomato",
   burgerColorHover:"#eb4034",
   // logo,
   logoWidth : "20vmax",
