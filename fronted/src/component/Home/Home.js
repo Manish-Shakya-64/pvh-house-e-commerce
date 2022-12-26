@@ -8,7 +8,6 @@ import { useSelector, useDispatch } from "react-redux";
 import Loader from "../layout/Loader/Loader";
 import {useAlert} from 'react-alert'
 import ProductCard from "./ProductCard.js";
-
 // const product = {
 //   name: "Shree S/B Bedsheet",
 //   images: [

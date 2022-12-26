@@ -3,11 +3,12 @@ import { ReactNavbar } from "overlay-navbar";
 import {ImSearch} from 'react-icons/im'
 import {FiShoppingBag} from 'react-icons/fi'
 import {MdAccountBox} from 'react-icons/md'
+import logo from '../../../images/logo.png'
 
 const options = {
-  burgerColor:"#tomato",
+  // burgerColor:"#tomato",
   burgerColorHover:"#eb4034",
-  // logo,
+  logo,
   logoWidth : "20vmax",
   navColor1 : "white",
   logoHoverSize : "10px",
