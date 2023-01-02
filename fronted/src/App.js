@@ -31,7 +31,6 @@ function App() {
         <Route exact path='/products' element={<Products/>} />
         <Route  path='/products/:keyword' element={<Products/>} />
         <Route exact path='/search' element={<Search/>} />
-
       </Routes>
       <Footer/>
     </Router>

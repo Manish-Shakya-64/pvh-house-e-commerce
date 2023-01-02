@@ -14,22 +14,29 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
 });
 
 // get all product
-exports.getAllProducts = catchAsyncErrors(async (req, res) => {
-
+exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
   const resultPerPage = 8;
   const productsCount = await Product.countDocuments();
 
-
   const apiFeature = new ApiFeatures(Product.find(), req.query)
     .search()
-    .filter()
-    .pagination(resultPerPage);
-  const products = await apiFeature.query;
+    .filter().pagination(resultPerPage);
+
+  let products = await apiFeature.query;
+
+  let filteredProductsCount = products.length;
+
+  // apiFeature.pagination(resultPerPage);
+ 
+
+  //  products = await Product.find();
+
   res.status(200).json({
     success: true,
     products,
     productsCount,
     resultPerPage,
+    filteredProductsCount,
   });
 });
 
@@ -69,6 +76,8 @@ exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
 
 //delete product --admin access
 exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
+
+  const product = await Product.findById(req.params.id);
   if (!product) {
     return next(new ErrorHandler("product not found", 404));
   }

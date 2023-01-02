@@ -8,23 +8,14 @@ import { useSelector, useDispatch } from "react-redux";
 import Loader from "../layout/Loader/Loader";
 import {useAlert} from 'react-alert'
 import ProductCard from "./ProductCard.js";
-// const product = {
-//   name: "Shree S/B Bedsheet",
-//   images: [
-//     {
-//       url: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YmVkJTIwc2hlZXR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
-//     },
-//   ],
-//   price: "650",
-//   _id: "manish",
-// };
+
 
 const Home = () => {
 
 
   const alert = useAlert()
   const dispatch = useDispatch();
-  const { loading, error, products, productsCount } = useSelector(
+  const { loading, error, products } = useSelector(
     (state) => state.products
   );
   useEffect(() => {
