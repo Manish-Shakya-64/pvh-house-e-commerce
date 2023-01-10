@@ -4,9 +4,16 @@ const User = require("../models/userModel");
 const sendToken = require("../utils/jwtToken");
 const sendEmail = require("../utils/sendEmail.js");
 const crypto = require("crypto");
+const cloudinary = require('cloudinary');
 
 //Register user
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
+
+  const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar,{
+    folder:"avatars",
+    width:150,
+    crop : "scale",
+  })
   const { name, email, password } = req.body;
 
   const user = await User.create({
@@ -14,8 +21,8 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
     email,
     password,
     avatar: {
-      public_id: "this is a sample id",
-      url: "This is a sample url",
+      public_id: myCloud.public_id,
+      url: myCloud.secure_url,
     },
   });
 
@@ -26,30 +33,30 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
 
 
 // Login user
+// Login User
 exports.loginUser = catchAsyncErrors(async (req, res, next) => {
   const { email, password } = req.body;
 
-  //checking ifuser has givem password and email both
+  // checking if user has given password and email both
 
   if (!email || !password) {
-    return next(new ErrorHandler("Please Enter Email and Password", 400));
+    return next(new ErrorHandler("Please Enter Email & Password", 400));
   }
 
-  // const user = await User.findOne({ email, password });
   const user = await User.findOne({ email }).select("+password");
 
   if (!user) {
-    return next(new ErrorHandler("Invalid Email or Password", 401));
+    return next(new ErrorHanlder("Invalid email or password", 401));
   }
 
-  const isPasswordMatched = user.comparePassword(password);
+  const isPasswordMatched = await user.comparePassword(password);
 
   if (!isPasswordMatched) {
-    return next(new ErrorHandler("Invalid Email or Password", 401));
+    return next(new ErrorHandler("Invalid email or password", 401));
   }
-  sendToken(user, 201, res);
-});
 
+  sendToken(user, 200, res);
+});
 
 
 //logOut User
@@ -162,21 +169,23 @@ exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
 exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findById(req.user.id).select("+password");
 
-  const isPasswordMatched = user.comparePassword(req.body.oldPassword);
+  const isPasswordMatched = await user.comparePassword(req.body.oldPassword);
 
   if (!isPasswordMatched) {
-    return next(new ErrorHandler("Old Password is incorrect", 400));
+    return next(new ErrorHandler("Old password is incorrect", 400));
   }
 
   if (req.body.newPassword !== req.body.confirmPassword) {
-    return next(new ErrorHandler("Password does not match", 400));
+    return next(new ErrorHandler("password does not match", 400));
   }
 
   user.password = req.body.newPassword;
+
   await user.save();
 
   sendToken(user, 200, res);
 });
+
 
 
 
@@ -187,7 +196,30 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
     email: req.body.email,
   };
 
-  //we will add cloudinary later
+  if(req.body.avatar !== "undefined"){
+
+    const user = await User.findById(req.user.id);
+
+    const imageId = user.avatar.public_id;
+
+    await cloudinary.v2.uploader.destroy(imageId);
+
+    console.log("hello");
+
+    const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+      folder: "avatars",
+      width: 150,
+      crop: "scale",
+    });
+
+    newUserData.avatar = {
+      public_id: myCloud.public_id,
+      url: myCloud.secure_url,
+    };
+  }
+
+
+  
 
   const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
     new: true,
@@ -195,10 +227,29 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
     useFindAndModify: false,
   });
 
+
   res.status(200).json({
     success: true,
   });
 });
+// exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
+//   const newUserData = {
+//     name: req.body.name,
+//     email: req.body.email,
+//   };
+
+//   //we will add cloudinary later
+
+//   const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
+//     new: true,
+//     runValidators: true,
+//     useFindAndModify: false,
+//   });
+
+//   res.status(200).json({
+//     success: true,
+//   });
+// });
 
 
 
