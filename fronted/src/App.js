@@ -13,6 +13,8 @@ import LoginSignUp from "./component/User/LoginSignUp";
 import Profile from "./component/User/Profile.js";
 import UpdateProfile from "./component/User/UpdateProfile.js";
 import UpdatePassword from "./component/User/UpdatePassword.js";
+import ForgotPassword from "./component/User/ForgotPassword.js";
+import ResetPassword from "./component/User/ResetPassword.js";
 import store from "./store";
 import { loadUser } from "./actions/userAction";
 import UserOption from "./component/layout/Header/UserOption.js";
@@ -40,14 +42,19 @@ function App() {
         <Route exact path="/products" element={<Products />} />
         <Route path="/products/:keyword" element={<Products />} />
         <Route exact path="/search" element={<Search />} />
+        <Route exact path="/password/forgot" element={<ForgotPassword />} />
+        <Route exact path="/password/reset/:token" element={<ResetPassword />} />
+        <Route exact path="/login" element={<LoginSignUp />} />
         {isAuthenticated && (
           <Route exact path="/account" element={<Profile />} />
         )}
         {isAuthenticated && (
           <Route exact path="/me/update" element={<UpdateProfile />} />
         )}
-        {isAuthenticated && <Route exact path="/password/update" element={<UpdatePassword/>}/>}
-        <Route exact path="/login" element={<LoginSignUp />} />
+        {isAuthenticated && (
+          <Route exact path="/password/update" element={<UpdatePassword />} />
+        )}
+        
       </Routes>
       <Footer />
     </Router>
