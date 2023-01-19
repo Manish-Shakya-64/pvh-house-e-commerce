@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Carousel from "react-material-ui-carousel";
 import "./ProductDetails.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,6 +9,7 @@ import ReviewCard from "./ReviewCard.js";
 import Loader from "../layout/Loader/Loader";
 import {useAlert} from 'react-alert'
 import MetaData from "../layout/MetaData";
+import {addItemsToCart} from "../../actions/cartAction"
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -25,7 +26,7 @@ const ProductDetails = () => {
       dispatch(clearErrors)
     }
     dispatch(getProductDetails(id));
-  }, [dispatch, id,error]);
+  }, [dispatch,id,error,alert]);
 
   const options = {
     edit: false,
@@ -35,6 +36,32 @@ const ProductDetails = () => {
     value: product.ratings,
     isHalf: true,
   };
+
+  const [quantity ,setQuantity] =  useState(1);
+
+  const increasequantity = () =>{
+
+    if(product.Stock <= quantity){
+      return
+    }
+
+    const qty = quantity + 1;
+    setQuantity(qty);
+  }
+
+
+  const decreasequantity = () =>{
+    if(1 >= quantity){
+      return
+    }
+    const qty = quantity - 1;
+    setQuantity(qty);
+  }
+
+  const addToCartHandler = () => {
+    dispatch(addItemsToCart(id,quantity));
+    alert.success("Item Added To Cart");
+  }
 
   return (
     <>
@@ -71,11 +98,11 @@ const ProductDetails = () => {
                 <h1>{`₹ ${product.price}/-`}</h1>
                 <div className="detailsBlock-3-1">
                   <div className="detailsBlock-3-1-1">
-                    <button>-</button>
-                    <input value="1" type="number" />
-                    <button>+</button>
+                    <button onClick={decreasequantity}>-</button>
+                    <input readOnly value={quantity} type="number" />
+                    <button onClick={increasequantity}>+</button>
                   </div>
-                  <button>Add to cart</button>
+                  <button onClick={addToCartHandler}>Add to cart</button>
                 </div>
 
                 <p>

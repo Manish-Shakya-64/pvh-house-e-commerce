@@ -15,6 +15,9 @@ import UpdateProfile from "./component/User/UpdateProfile.js";
 import UpdatePassword from "./component/User/UpdatePassword.js";
 import ForgotPassword from "./component/User/ForgotPassword.js";
 import ResetPassword from "./component/User/ResetPassword.js";
+import Cart from "./component/Cart/Cart.js"
+import Shipping from "./component/Cart/Shipping.js"
+import ConfirmOrder from "./component/Cart/ConfirmOrder.js"
 import store from "./store";
 import { loadUser } from "./actions/userAction";
 import UserOption from "./component/layout/Header/UserOption.js";
@@ -45,6 +48,8 @@ function App() {
         <Route exact path="/password/forgot" element={<ForgotPassword />} />
         <Route exact path="/password/reset/:token" element={<ResetPassword />} />
         <Route exact path="/login" element={<LoginSignUp />} />
+        <Route exact path="/cart" element={<Cart />} />
+
         {isAuthenticated && (
           <Route exact path="/account" element={<Profile />} />
         )}
@@ -53,6 +58,12 @@ function App() {
         )}
         {isAuthenticated && (
           <Route exact path="/password/update" element={<UpdatePassword />} />
+        )}
+        {isAuthenticated && (
+          <Route exact path="/shipping" element={<Shipping />} />
+        )}
+        {isAuthenticated && (
+          <Route exact path="/order/confirm" element={<ConfirmOrder />} />
         )}
         
       </Routes>

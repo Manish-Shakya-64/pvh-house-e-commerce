@@ -8,12 +8,13 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login, register, clearErrors } from "../../actions/userAction";
 import { useAlert } from "react-alert";
-import { useNavigate } from "react-router-dom";
+import { useNavigate , useLocation} from "react-router-dom";
 
 const LoginSignUp = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
   const history = useNavigate();
+  const location = useLocation();
 
   const { error, loading, isAuthenticated } = useSelector(
     (state) => state.user
@@ -73,6 +74,8 @@ const LoginSignUp = () => {
     }
   };
 
+  const redirect = location.search ? location.search.split("=")[1] : "/account";
+
   useEffect(() => {
     if (error) {
       alert.error(error);
@@ -80,9 +83,9 @@ const LoginSignUp = () => {
     }
 
     if (isAuthenticated) {
-      history("/account");
+      history(redirect);
     }
-  }, [dispatch, error, alert, history, isAuthenticated]);
+  }, [dispatch, error, alert, history, isAuthenticated,redirect]);
 
   const switchTabs = (e, tab) => {
     if (tab === "login") {

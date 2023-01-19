@@ -36,6 +36,7 @@ const options = {
   profileIcon  :  true,
   ProfileIconElement  :  MdAccountBox,
   profileIconUrl : "/login",
+  cartIconUrl : "/cart",
   profileIconColor : "rgba(35, 35, 35,0.8)",
   searchIconColor : "rgba(35, 35, 35,0.8)",
   cartIconColor : "rgba(35, 35, 35,0.8)",
