@@ -3,10 +3,17 @@ const errormiddleware = require("./middleware/error");
 const user = require("./routes/userRoute");
 const product = require("./routes/productRoute");
 const order = require("./routes/orderRoute");
+const payment = require("./routes/paymentRoute")
 const cookieParser = require("cookie-parser");
 const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload')
 const cors = require('cors')
+const dotenv= require('dotenv');
+
+
+// dot env confuguration
+dotenv.config({path:"backend/config/config.env"})
+
 
 const app = express();
 app.use(cors({"Access-Control":"Allow-Origin"}))
@@ -17,6 +24,7 @@ app.use(fileUpload());
 app.use("/api/v1", product);
 app.use("/api/v1", user);
 app.use("/api/v1", order);
+app.use("/api/v1",payment)
 
 //middleware for error
 app.use(errormiddleware);
