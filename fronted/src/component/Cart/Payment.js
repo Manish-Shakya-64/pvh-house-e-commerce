@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import CheckoutSteps from "../Cart/CheckoutSteps";
 import { useSelector, useDispatch } from "react-redux";
 import MetaData from "../layout/MetaData";
@@ -18,7 +18,7 @@ import CreditCardIcon from "@material-ui/icons/CreditCard";
 import EventIcon from "@material-ui/icons/Event";
 import VpnKeyIcon from "@material-ui/icons/VpnKey";
 import { createOrder, clearErrors } from "../../actions/orderAction";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 
 const Payment = () => {
   const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
@@ -47,10 +47,9 @@ const Payment = () => {
     totalPrice: orderInfo.totalPrice,
   };
 
-
   const submitHandler = async (e) => {
     e.preventDefault();
-    console.log("hello")
+    console.log("hello");
     payBtn.current.disabled = true;
 
     try {
@@ -62,7 +61,7 @@ const Payment = () => {
       const { data } = await axios.post(
         "/api/v1/payment/process",
         paymentData,
-       config
+        config
       );
 
       const client_secret = data.client_secret;
@@ -98,7 +97,7 @@ const Payment = () => {
             status: result.paymentIntent.status,
           };
 
-        //   dispatch(createOrder(order));
+          await dispatch(createOrder(order));
 
           history("/success");
         } else {
@@ -117,11 +116,10 @@ const Payment = () => {
       alert.error(error);
       dispatch(clearErrors());
     }
-    // getStripeApiKey();
   }, [dispatch, error, alert]);
 
   return (
-    <Fragment>
+    <>
       <MetaData title="Payment" />
       <CheckoutSteps activeStep={2} />
       <div className="paymentContainer">
@@ -148,7 +146,7 @@ const Payment = () => {
           />
         </form>
       </div>
-    </Fragment>
+    </>
   );
 };
 

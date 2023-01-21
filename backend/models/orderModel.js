@@ -22,7 +22,7 @@ const orderSchema = new mongoose.Schema({
       required: true,
     },
 
-    pincode: {
+    pinCode: {
       type: Number,
       required: true,
     },
@@ -33,7 +33,7 @@ const orderSchema = new mongoose.Schema({
     },
   },
 
-  orderItem: [
+  orderItems: [
     {
       name: {
         type: String,

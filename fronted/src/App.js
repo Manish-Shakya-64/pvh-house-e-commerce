@@ -19,6 +19,8 @@ import Cart from "./component/Cart/Cart.js"
 import Shipping from "./component/Cart/Shipping.js"
 import ConfirmOrder from "./component/Cart/ConfirmOrder.js"
 import Payment from "./component/Cart/Payment.js"
+import OrderSuccess from "./component/Cart/OrderSuccess.js"
+import MyOrders from './component/Order/MyOrders.js'
 import store from "./store";
 import { loadUser } from "./actions/userAction";
 import UserOption from "./component/layout/Header/UserOption.js";
@@ -79,18 +81,15 @@ function App() {
         {isAuthenticated && (
           <Route exact path="/order/confirm" element={<ConfirmOrder />} />
         )}
-       {/* {stripeApiKey &&(
-        <Elements stripe={loadStripe(stripeApiKey)}>
-           {isAuthenticated && (
-          <Route exact path="/process/payment" element={<Payment />} />
-        )}
-        </Elements>
-       )
-
-       } */}
-      
+     
         {isAuthenticated && (
           <Route exact path="/process/payment" element={<Elements stripe={loadStripe(stripeApiKey)}><Payment /></Elements>} />
+        )}
+          {isAuthenticated && (
+          <Route exact path="/success" element={<OrderSuccess />} />
+        )}
+        {isAuthenticated && (
+          <Route exact path="/orders" element={<MyOrders />} />
         )}
       
 
