@@ -21,6 +21,7 @@ import ConfirmOrder from "./component/Cart/ConfirmOrder.js"
 import Payment from "./component/Cart/Payment.js"
 import OrderSuccess from "./component/Cart/OrderSuccess.js"
 import MyOrders from './component/Order/MyOrders.js'
+import OrderDetails from './component/Order/OrderDetails.js'
 import store from "./store";
 import { loadUser } from "./actions/userAction";
 import UserOption from "./component/layout/Header/UserOption.js";
@@ -90,6 +91,9 @@ function App() {
         )}
         {isAuthenticated && (
           <Route exact path="/orders" element={<MyOrders />} />
+        )}
+         {isAuthenticated && (
+          <Route exact path="/order/:id" element={<OrderDetails />} />
         )}
       
 

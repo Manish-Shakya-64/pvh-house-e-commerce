@@ -56,11 +56,11 @@
   }
 
   .greenColor{
-    color: green;
+    color: green !important;
   }
 
   .redColor{
-    color:red;
+    color:red !important;
   }
   
   @media screen and (max-width: 600px) {
