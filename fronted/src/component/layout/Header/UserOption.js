@@ -40,7 +40,7 @@ const UserOption = ({ user }) => {
   }
 
   function dashboard() {
-    history("/dashboard");
+    history("/admin/dashboard");
   }
 
   function orders() {

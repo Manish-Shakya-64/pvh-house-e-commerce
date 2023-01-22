@@ -13,9 +13,12 @@ const dotenv= require('dotenv');
 
 // dot env confuguration
 dotenv.config({path:"backend/config/config.env"})
-
-
 const app = express();
+
+
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({extended : true,limit: '50mb'}));
+
 app.use(cors({"Access-Control":"Allow-Origin"}))
 app.use(cookieParser());
 app.use(express.json());
