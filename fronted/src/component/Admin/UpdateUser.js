@@ -57,7 +57,7 @@ const UpdateUser = () => {
 
     if (isUpdated) {
       alert.success("User Updated Successfully");
-      history("/admin/users");
+      // history("/admin/users");
       dispatch({ type: UPDATE_USER_RESET });
     }
   }, [dispatch, alert, error, history, isUpdated, updateError, user, userId]);

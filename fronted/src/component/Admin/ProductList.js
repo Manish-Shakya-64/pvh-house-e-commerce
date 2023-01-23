@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { useEffect } from "react";
 import { DataGrid } from "@material-ui/data-grid";
 import "./productList.css";
 import { useSelector, useDispatch } from "react-redux";
@@ -13,13 +13,14 @@ import { Button } from "@material-ui/core";
 import MetaData from "../layout/MetaData";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
+import LaunchIcon from "@material-ui/icons/Launch";
 import SideBar from "./Sidebar";
 import { DELETE_PRODUCT_RESET } from "../../constants/productConstant";
-import  {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 
 const ProductList = () => {
   const dispatch = useDispatch();
-const history = useNavigate();
+  const history = useNavigate();
   const alert = useAlert();
 
   const { error, products } = useSelector((state) => state.products);
@@ -50,7 +51,7 @@ const history = useNavigate();
     }
 
     dispatch(getAdminProduct());
-  }, [dispatch, alert, error, history,isDeleted ,deleteError]);
+  }, [dispatch, alert, error, history, isDeleted, deleteError]);
 
   const columns = [
     { field: "id", headerName: "Product ID", minWidth: 220, flex: 0.5 },
@@ -58,8 +59,8 @@ const history = useNavigate();
     {
       field: "name",
       headerName: "Name",
-      minWidth: 300,
-      flex: 1,
+      minWidth: 250,
+      flex: 0.6,
     },
     {
       field: "stock",
@@ -73,32 +74,40 @@ const history = useNavigate();
       field: "price",
       headerName: "Price",
       type: "number",
-      minWidth: 230,
-      flex: 0.5,
+      minWidth: 180,
+      flex: 0.3,
     },
 
     {
       field: "actions",
-      flex: 0.3,
+      flex: 0.4,
       headerName: "Actions",
-      minWidth: 150,
+      minWidth: 200,
       type: "number",
       sortable: false,
       renderCell: (params) => {
         return (
-          <Fragment>
+          <>
+          <Button title="See Product">
+            <Link to={`/product/${params.getValue(params.id, "id")}`}>
+              <LaunchIcon />
+            </Link>
+            </Button>
+
+            <Button title="Edit Product">
             <Link to={`/admin/product/${params.getValue(params.id, "id")}`}>
               <EditIcon />
             </Link>
+            </Button>
 
-            <Button
+            <Button title="Delete Product"
               onClick={() =>
                 deleteProductHandler(params.getValue(params.id, "id"))
               }
             >
               <DeleteIcon />
             </Button>
-          </Fragment>
+          </>
         );
       },
     },
@@ -117,7 +126,7 @@ const history = useNavigate();
     });
 
   return (
-    <Fragment>
+    <>
       <MetaData title={`ALL PRODUCTS - Admin`} />
 
       <div className="dashboard">
@@ -135,7 +144,7 @@ const history = useNavigate();
           />
         </div>
       </div>
-    </Fragment>
+    </>
   );
 };
 

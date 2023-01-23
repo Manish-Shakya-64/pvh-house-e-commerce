@@ -38,6 +38,8 @@ import ProcessOrder from "./component/Admin/ProcessOrder.js";
 import UsersList from "./component/Admin/UsersList.js";
 import UpdateUser from "./component/Admin/UpdateUser.js";
 import ProductReviews from "./component/Admin/ProductReviews.js";
+import About from "./component/layout/About/About";
+import Contact from "./component/layout/Contact/Contact";
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -67,6 +69,8 @@ function App() {
       {isAuthenticated && <UserOption user={user} />}
       <Routes>
         <Route exact path="/" element={<Home />} />
+        <Route exact path="/about" element={<About />} />
+        <Route exact path="/contact" element={<Contact />} />
         <Route exact path="/product/:id" element={<ProductDetails />} />
         <Route exact path="/products" element={<Products />} />
         <Route path="/products/:keyword" element={<Products />} />

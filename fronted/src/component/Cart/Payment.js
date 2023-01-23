@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef} from "react";
 import CheckoutSteps from "../Cart/CheckoutSteps";
 import { useSelector, useDispatch } from "react-redux";
 import MetaData from "../layout/MetaData";
@@ -140,7 +140,7 @@ const Payment = () => {
 
           <input
             type="submit"
-            value={`Pay - ₹${orderInfo && orderInfo.totalPrice}`}
+            value={`Pay - ₹ ${orderInfo && Math.round(orderInfo.totalPrice)}.00/-`}
             ref={payBtn}
             className="paymentFormBtn"
           />

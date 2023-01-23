@@ -91,11 +91,13 @@ const UsersList = () => {
       renderCell: (params) => {
         return (
           <>
+          <Button title="Edit User">
             <Link to={`/admin/user/${params.getValue(params.id, "id")}`}>
               <EditIcon />
             </Link>
+            </Button>
 
-            <Button
+            <Button title="Delete User"
               onClick={() =>
                 deleteUserHandler(params.getValue(params.id, "id"))
               }

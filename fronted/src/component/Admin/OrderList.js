@@ -84,7 +84,7 @@ const history = useNavigate();
 
     {
       field: "actions",
-      flex: 0.3,
+      flex: 0.5,
       headerName: "Actions",
       minWidth: 150,
       type: "number",
@@ -92,11 +92,14 @@ const history = useNavigate();
       renderCell: (params) => {
         return (
           <>
-            <Link to={`/admin/order/${params.getValue(params.id, "id")}`}>
+
+          <Button title="View Order Details"> <Link to={`/admin/order/${params.getValue(params.id, "id")}`}>
               <EditIcon />
             </Link>
+            </Button>
 
-            <Button
+
+            <Button title="Delete Order"
               onClick={() =>
                 deleteOrderHandler(params.getValue(params.id, "id"))
               }
