@@ -15,13 +15,13 @@ import UpdateProfile from "./component/User/UpdateProfile.js";
 import UpdatePassword from "./component/User/UpdatePassword.js";
 import ForgotPassword from "./component/User/ForgotPassword.js";
 import ResetPassword from "./component/User/ResetPassword.js";
-import Cart from "./component/Cart/Cart.js"
-import Shipping from "./component/Cart/Shipping.js"
-import ConfirmOrder from "./component/Cart/ConfirmOrder.js"
-import Payment from "./component/Cart/Payment.js"
-import OrderSuccess from "./component/Cart/OrderSuccess.js"
-import MyOrders from './component/Order/MyOrders.js'
-import OrderDetails from './component/Order/OrderDetails.js'
+import Cart from "./component/Cart/Cart.js";
+import Shipping from "./component/Cart/Shipping.js";
+import ConfirmOrder from "./component/Cart/ConfirmOrder.js";
+import Payment from "./component/Cart/Payment.js";
+import OrderSuccess from "./component/Cart/OrderSuccess.js";
+import MyOrders from "./component/Order/MyOrders.js";
+import OrderDetails from "./component/Order/OrderDetails.js";
 import store from "./store";
 import { loadUser } from "./actions/userAction";
 import UserOption from "./component/layout/Header/UserOption.js";
@@ -29,8 +29,8 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import Dashboard from './component/Admin/Dashboard.js';
-import ProductList from './component/Admin/ProductList.js';
+import Dashboard from "./component/Admin/Dashboard.js";
+import ProductList from "./component/Admin/ProductList.js";
 import NewProduct from "./component/Admin/NewProduct.js";
 import UpdateProduct from "./component/Admin/UpdateProduct.js";
 import OrderList from "./component/Admin/OrderList.js";
@@ -44,12 +44,11 @@ import Contact from "./component/layout/Contact/Contact";
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
 
-  const [stripeApiKey,setStripeApiKey] = useState("");
+  const [stripeApiKey, setStripeApiKey] = useState("");
 
-  async function getStripeApiKey(){
-    const {data} = await axios.get("/api/v1/stripeapikey");
+  async function getStripeApiKey() {
+    const { data } = await axios.get("/api/v1/stripeapikey");
     setStripeApiKey(data.stripeApiKey);
-
   }
 
   useEffect(() => {
@@ -61,7 +60,6 @@ function App() {
 
     store.dispatch(loadUser());
     getStripeApiKey();
-    
   }, []);
   return (
     <Router>
@@ -76,7 +74,11 @@ function App() {
         <Route path="/products/:keyword" element={<Products />} />
         <Route exact path="/search" element={<Search />} />
         <Route exact path="/password/forgot" element={<ForgotPassword />} />
-        <Route exact path="/password/reset/:token" element={<ResetPassword />} />
+        <Route
+          exact
+          path="/password/reset/:token"
+          element={<ResetPassword />}
+        />
         <Route exact path="/login" element={<LoginSignUp />} />
         <Route exact path="/cart" element={<Cart />} />
 
@@ -95,49 +97,56 @@ function App() {
         {isAuthenticated && (
           <Route exact path="/order/confirm" element={<ConfirmOrder />} />
         )}
-     
+
         {isAuthenticated && (
-          <Route exact path="/process/payment" element={<Elements stripe={loadStripe(stripeApiKey)}><Payment /></Elements>} />
+          <Route
+            exact
+            path="/process/payment"
+            element={
+              <Elements stripe={loadStripe(stripeApiKey)}>
+                <Payment />
+              </Elements>
+            }
+          />
         )}
-          {isAuthenticated && (
+        {isAuthenticated && (
           <Route exact path="/success" element={<OrderSuccess />} />
         )}
         {isAuthenticated && (
           <Route exact path="/orders" element={<MyOrders />} />
         )}
-         {isAuthenticated && (
+        {isAuthenticated && (
           <Route exact path="/order/:id" element={<OrderDetails />} />
         )}
-         {isAuthenticated &&(
+        {isAuthenticated && (
           <Route exact path="/admin/dashboard" element={<Dashboard />} />
         )}
-        {isAuthenticated &&(
+        {isAuthenticated && (
           <Route exact path="/admin/products" element={<ProductList />} />
         )}
-        {isAuthenticated &&(
+        {isAuthenticated && (
           <Route exact path="/admin/product" element={<NewProduct />} />
         )}
-        {isAuthenticated &&(
+        {isAuthenticated && (
           <Route exact path="/admin/product/:id" element={<UpdateProduct />} />
         )}
-        {isAuthenticated &&(
+        {isAuthenticated && (
           <Route exact path="/admin/orders" element={<OrderList />} />
         )}
-        {isAuthenticated &&(
+        {isAuthenticated && (
           <Route exact path="/admin/order/:id" element={<ProcessOrder />} />
         )}
-        {isAuthenticated &&(
+        {isAuthenticated && (
           <Route exact path="/admin/users" element={<UsersList />} />
         )}
-        {isAuthenticated &&(
+        {isAuthenticated && (
           <Route exact path="/admin/user/:id" element={<UpdateUser />} />
         )}
-        {isAuthenticated &&(
+        {isAuthenticated && (
           <Route exact path="/admin/reviews" element={<ProductReviews />} />
         )}
-      
 
-        
+        <Route path="*" element={<Error404 />} />
       </Routes>
       <Footer />
     </Router>

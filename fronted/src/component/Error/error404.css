@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
+
+.errorContainer {
+    width: 100vw;
+    height: 75vh;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.errorContainer > h1 {
+    font-size: 5vmax;
+    font-family: 'Open Sans', sans-serif;
+    color: tomato;
+    font-weight: bold;
+}
+
+.errorContainer > p {
+    font-size: 2vmax;
+}
+
+.errorContainer >a {
+    color: white;
+    font-size: 1.2vmax;
+    background-color: tomato;
+    text-align: center;
+    text-decoration: none;
+    padding: 1vmax 2.5vmax;
+    border: none;
+    margin-top: 2vmax;
+}
