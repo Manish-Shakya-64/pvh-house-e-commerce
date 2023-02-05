@@ -40,6 +40,8 @@ import UpdateUser from "./component/Admin/UpdateUser.js";
 import ProductReviews from "./component/Admin/ProductReviews.js";
 import About from "./component/layout/About/About";
 import Contact from "./component/layout/Contact/Contact";
+import Error404 from './component/Error/Error404'
+
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
