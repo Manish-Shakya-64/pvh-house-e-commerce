@@ -11,19 +11,20 @@ import { useAlert } from "react-alert";
 import { Typography } from "@material-ui/core";
 import MetaData from "../layout/MetaData";
 
-
 const categories = [
   "Bedsheets",
   "Blankets",
-  "Sofa Covers",
   "Pillow Covers",
-  "Electronics"
-]
+  "Galicha",
+  "Sofa Cover",
+  "Towels",
+  "Napkins",
+];
 
 const Products = () => {
   const { keyword } = useParams();
 
-  const alert = useAlert()
+  const alert = useAlert();
 
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
@@ -52,14 +53,13 @@ const Products = () => {
   };
 
   useEffect(() => {
-
-    if(error){
-      alert.error(error)
-      dispatch(clearErrors)
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors);
     }
 
-    dispatch(getProduct(keyword, currentPage, price,category,ratings));
-  }, [dispatch, keyword, currentPage, price,category,ratings,alert,error]);
+    dispatch(getProduct(keyword, currentPage, price, category, ratings));
+  }, [dispatch, keyword, currentPage, price, category, ratings, alert, error]);
 
   let count = filteredProductsCount;
 
@@ -69,57 +69,58 @@ const Products = () => {
         <Loader />
       ) : (
         <>
-        <MetaData title="Products--PVH House"/>
+          <MetaData title="Products--PVH House" />
           <h2 className="productsHeading">Products</h2>
-          <div className="products">
-            {products &&
-              products.map((product) => (
-                <ProductCard key={product._id} product={product} />
-              ))}
-          </div>
+          <div className="mainBox">
+           
 
-          <div className="filterBox">
-            <Typography>Price</Typography>
-            <Slider
-              value={price}
-              onChange={priceHandler}
-              valueLabelDisplay="auto"
-              aria-labelledby="range-slider"
-              min={0}
-              max={25000}
-              step={100}
-            ></Slider>
-
-
-             <Typography>Categories</Typography>
-            <ul className="categoryBox">
-              {categories.map((category) => (
-                <li
-                  className="category-link"
-                  key={category}
-                  onClick={() => setCategory(category)}
-                >
-                  {category}
-                </li>
-              ))}
-            </ul>
-
-            <fieldset>
-              <Typography component="legend">Ratings Above</Typography>
+            <div className="filterBox">
+              <h3>Filters</h3>
+              <Typography>Price</Typography>
               <Slider
-                value={ratings}
-                onChange={(e, newRating) => {
-                  setRatings(newRating);
-                }}
-                aria-labelledby="continuous-slider"
+                value={price}
+                onChange={priceHandler}
                 valueLabelDisplay="auto"
+                aria-labelledby="range-slider"
                 min={0}
-                max={5}
-              />
-            </fieldset>
-          </div>
+                max={25000}
+                step={100}
+              ></Slider>
 
-         
+              <Typography>Categories</Typography>
+              <ul className="categoryBox">
+                {categories.map((category) => (
+                  <li
+                    className="category-link"
+                    key={category}
+                    onClick={() => setCategory(category)}
+                  >
+                    {category}
+                  </li>
+                ))}
+              </ul>
+
+              <fieldset>
+                <Typography component="legend">Ratings Above</Typography>
+                <Slider
+                  value={ratings}
+                  onChange={(e, newRating) => {
+                    setRatings(newRating);
+                  }}
+                  aria-labelledby="continuous-slider"
+                  valueLabelDisplay="auto"
+                  min={0}
+                  max={5}
+                />
+              </fieldset>
+            </div>
+            <div className="products">
+              {products &&
+                products.map((product) => (
+                  <ProductCard key={product._id} product={product} />
+                ))}
+            </div>
+          </div>
 
           {resultPerPage < productsCount && (
             <div className="paginationBox">

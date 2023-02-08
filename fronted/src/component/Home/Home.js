@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Loader from "../layout/Loader/Loader";
 import {useAlert} from 'react-alert'
 import ProductCard from "./ProductCard.js";
+import { Link } from "react-router-dom";
 
 
 const Home = () => {
@@ -48,6 +49,9 @@ const Home = () => {
           <div className="container" id="container">
             {products &&
               products.map((product) => <ProductCard product={product} />)}
+          </div>
+          <div className="moreBtn">
+            <Link to="/products">See All Products</Link>
           </div>
         </>
       )}

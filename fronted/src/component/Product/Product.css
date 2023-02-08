@@ -8,12 +8,21 @@
   text-align: center;
 }
 
+.mainBox{
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+}
+
 .products {
   display: flex;
   flex-wrap: wrap;
-  padding: 0 5vmax;
+  padding: 0 1vmax;
   justify-content: center;
   min-height: 30vh;
+  flex: 0.8;
+  width: 100%;
+  border-left: 1px solid rgba(206, 206, 206,0.5);
 }
 
 .paginationBox {
@@ -68,9 +77,19 @@
 
 .filterBox {
   width: 10vmax;
-  position: absolute;
   top: 10vmax;
-  left: 4vmax;
+  left: 3vmax;
+  flex: 0.15;
+  margin-right: 1vmax;
+}
+
+.filterBox > h3{
+  font-size: 1.5vmax;
+  font-family: "Roboto";
+  text-align: center;
+  border-bottom: 1px solid tomato;
+  margin-bottom: 1vmax;
+  padding: 1vmax;
 }
 
 .categoryBox {
@@ -95,6 +114,10 @@
 
 @media screen and (max-width: 600px) {
 
+
+  .mainBox{
+    flex-direction: column-reverse;
+  }
   .products{
     width: 100vw;
     padding: 0 0;
