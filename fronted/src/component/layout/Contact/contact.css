@@ -1,29 +1,183 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;1,500&display=swap");
+
+.contactHeading {
+  text-align: center;
+  font-size: 2.5vmax;
+  font-family: 'Open Sans', sans-serif;
+  margin-top: 15vh;
+}
+
 .contactContainer {
-    height: 100vh;
+  width: 80vw;
+  margin: auto;
+  margin-top: 1vmax;
+  /* border: 1px solid black; */
+  border-radius: 20px;
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 1px hsl(0deg 0% 0% / 0.075),
+    0 2px 2px hsl(0deg 0% 0% / 0.075), 0 4px 4px hsl(0deg 0% 0% / 0.075),
+    0 8px 8px hsl(0deg 0% 0% / 0.075), 0 16px 16px hsl(0deg 0% 0% / 0.075);
+}
+
+.column {
+  /* border: 1px solid black; */
+  width: 50%;
+  height: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contactContainer > .column > form > div > div {
+  display: flex;
+  justify-content: space-between;
+  width: inherit;
+  align-items: center;
+  margin: 3.5vmax 0vmax;
+  /* border: 1px solid black; */
+}
+
+.contactContainer > .column > form > div > div > label {
+  font-size: 1.4vmax;
+  font-weight: 600;
+  font-family: 'Open Sans', sans-serif;
+
+}
+
+.contactContainer > .column > form > div > div > input[type="text"],
+input[type="email"],
+input[type="contact"],
+textarea {
+  width: 300px;
+  padding: 0.8vmax;
+  font-size: 1.2vmax;
+  border-radius: 10px;
+  border: 1px solid;
+  outline-color: tomato;
+}
+
+.btnDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contactSubmitBtn {
+  background-color: tomato;
+  border: none;
+  font-size: 1.3vmax;
+  color: white;
+  padding: 1vmax 5vmax;
+  border-radius: 10px;
+  transition: 0.5s;
+}
+.contactSubmitBtn:hover {
+  transform: scale(1.1);
+  background-color: rgb(232, 88, 62);
+}
+
+.col_right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.row {
+  width: 40vw;
+  height: inherit;
+  /* border: 1px solid black; */
+}
+
+.ContactInfo {
+  height: fit-content;
+}
+
+.ContactInfo > div {
+  padding: 1.5vmax 1vmax;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.ContactInfo > div > svg {
+  font-size: 1.8vmax;
+  padding-right: 5px;
+}
+
+.ContactInfo > div > span {
+  font-size: 1.3vmax;
+  width: 100px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+}
+
+.ContactInfo > div > p {
+  font-size: 1.1vmax;
+  padding: 0vmax 10px;
+}
+
+iframe {
+border-radius:  0 0 10px 0;
+width: 100%;
+height: 100%;
+}
+
+@media screen and (max-width: 600px) {
+
+  .contactContainer{
+    flex-direction: column;
+    height: fit-content;
     width: 100vw;
-    max-width: 100%;
-    display: grid;
-    place-items: center;
-    background-color: white;
-    position: fixed;
   }
-  
-  .mailBtn {
-    text-decoration: none;
-    transform: translateX(-100vw);
-    animation: mailBtnAnimation 2s forwards;
+
+  .contactContainer > .column > form > div > div > label{
+    font-size: 1.6vmax;
   }
-  
-  .mailBtn > button {
-    text-decoration: none;
-    font: 200 2vmax "Roboto";
-    cursor: url("https://img.icons8.com/color/48/000000/edit--v2.png"), pointer;
-    padding: 2vmax;
+
+  .contactContainer > .column > form > div > div > input[type="text"],
+input[type="email"],
+input[type="contact"],
+textarea{
+  width: 250px;
+  padding: 1vmax;
+  font-size: 1.5vmax;
+}
+
+  .column{
+    width: 100%;
+    height: 50vh;
   }
-  
-  @keyframes mailBtnAnimation {
-    to {
-      transform: translateX(0);
-    }
+
+  .row{
+    margin-top: 2vmax;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
   }
-  
+
+  .ContactInfo > div > span{
+    font-size: 1.6vmax;
+
+  }
+
+  .ContactInfo > div > p {
+    font-size: 1.5vmax;
+    padding: 0.7vmax 5px;
+  }
+
+  iframe{
+    width: 100%;
+    height: 100%;
+    border-radius: 0px;
+  }
+
+  .bb{
+    border-bottom: 1px solid #000;
+  }
+}

@@ -120,34 +120,55 @@ function App() {
         {isAuthenticated && (
           <Route exact path="/order/:id" element={<OrderDetails />} />
         )}
-        {isAuthenticated && (
-          <Route exact path="/admin/dashboard" element={<Dashboard />} />
-        )}
-        {isAuthenticated && (
-          <Route exact path="/admin/products" element={<ProductList />} />
-        )}
-        {isAuthenticated && (
-          <Route exact path="/admin/product" element={<NewProduct />} />
-        )}
-        {isAuthenticated && (
-          <Route exact path="/admin/product/:id" element={<UpdateProduct />} />
-        )}
-        {isAuthenticated && (
-          <Route exact path="/admin/orders" element={<OrderList />} />
-        )}
-        {isAuthenticated && (
-          <Route exact path="/admin/order/:id" element={<ProcessOrder />} />
-        )}
-        {isAuthenticated && (
-          <Route exact path="/admin/users" element={<UsersList />} />
-        )}
-        {isAuthenticated && (
-          <Route exact path="/admin/user/:id" element={<UpdateUser />} />
-        )}
-        {isAuthenticated && (
-          <Route exact path="/admin/reviews" element={<ProductReviews />} />
-        )}
+        
 
+          {/*--------------------- Admin Routes only---------------------- */}
+        
+        {isAuthenticated && user?.role === "admin" ? (
+          <Route exact path="/admin/dashboard" element={<Dashboard />} />
+        ) : (
+          <Route path="*" element={<Error404 />} />
+        )}
+        {isAuthenticated && user?.role === "admin" ? (
+          <Route exact path="/admin/products" element={<ProductList />} />
+        ) : (
+          <Route path="*" element={<Error404 />} />
+        )}
+        {isAuthenticated && user?.role === "admin" ? (
+          <Route exact path="/admin/product" element={<NewProduct />} />
+          ) : (
+          <Route path="*" element={<Error404 />} />
+        )}
+        {isAuthenticated && user?.role === "admin" ? (
+          <Route exact path="/admin/product/:id" element={<UpdateProduct />} />
+          ) : (
+          <Route path="*" element={<Error404 />} />
+        )}
+        {isAuthenticated && user?.role === "admin" ? (
+          <Route exact path="/admin/orders" element={<OrderList />} />
+          ) : (
+          <Route path="*" element={<Error404 />} />
+        )}
+        {isAuthenticated && user?.role === "admin" ? (
+          <Route exact path="/admin/order/:id" element={<ProcessOrder />} />
+          ) : (
+          <Route path="*" element={<Error404 />} />
+        )}
+        {isAuthenticated && user?.role === "admin" ? (
+          <Route exact path="/admin/users" element={<UsersList />} />
+          ) : (
+          <Route path="*" element={<Error404 />} />
+        )}
+        {isAuthenticated && user?.role === "admin" ? (
+          <Route exact path="/admin/user/:id" element={<UpdateUser />} />
+          ) : (
+          <Route path="*" element={<Error404 />} />
+        )}
+        {isAuthenticated && user?.role === "admin" ? (
+          <Route exact path="/admin/reviews" element={<ProductReviews />} />
+          ) : (
+          <Route path="*" element={<Error404 />} />
+        )}
         <Route path="*" element={<Error404 />} />
       </Routes>
       <Footer />
