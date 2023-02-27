@@ -3,9 +3,13 @@ import "./about.css";
 import { Button, Typography, Avatar } from "@material-ui/core";
 import YouTubeIcon from "@material-ui/icons/YouTube";
 import InstagramIcon from "@material-ui/icons/Instagram";
+import pvhlogo from "../../../images/pvhlogo.png";
+import { useNavigate } from "react-router-dom";
 const About = () => {
-  const visitInstagram = () => {
-    window.location = "https://instagram.com/meabhisingh";
+
+  const history = useNavigate();
+  const visitHome = () => {
+    history("/")
   };
   return (
     <div className="aboutSection">
@@ -17,12 +21,14 @@ const About = () => {
         <div>
           <div>
             <Avatar
-              style={{ width: "10vmax", height: "10vmax", margin: "2vmax 0" }}
-              src="https://res.cloudinary.com/tripleayt/image/upload/v1631555947/products/jpyibarlaxawvcvqjv5b.png"
-              alt="Founder"
+              style={{ width: "10vmax", height: "10vmax", margin: "2vmax 0" ,cursor:"pointer"}}
+              src={pvhlogo}
+              alt="Logo"
+              onClick={visitHome}
+              
             />
-            <Typography>Abhishek Singh</Typography>
-            <Button onClick={visitInstagram} color="primary">
+            <Typography>Devang Bhavsar</Typography>
+            <Button  color="primary">
               Visit Instagram
             </Button>
             <span>
@@ -33,13 +39,13 @@ const About = () => {
           <div className="aboutSectionContainer2">
             <Typography component="h2">Our Brands</Typography>
             <a
-              href="https://www.youtube.com/channel/UCO7afj9AUo0zV69pqEYhcjw"
+              href="#"
               target="blank"
             >
               <YouTubeIcon className="youtubeSvgIcon" />
             </a>
 
-            <a href="https://instagram.com/meabhisingh" target="blank">
+            <a href="#" target="blank">
               <InstagramIcon className="instagramSvgIcon" />
             </a>
           </div>

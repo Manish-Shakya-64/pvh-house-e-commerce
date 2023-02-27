@@ -38,7 +38,7 @@ const Home = () => {
           <div className="banner">
             <p>Welcome to Padmavati Handloom House</p>
             <h1>FIND AMAZING PRODUCTS BELOW</h1>
-            <a href="#conatiner">
+            <a href="#container">
               <button>
                 Scroll <CgMouse />
               </button>

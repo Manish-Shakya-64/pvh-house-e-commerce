@@ -5,6 +5,7 @@ import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import CallRoundedIcon from "@material-ui/icons/CallRounded";
 import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined";
 import { useState } from "react";
+import MetaData from "../MetaData";
 const Contact = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -13,6 +14,7 @@ const Contact = () => {
 
   return (
     <>
+    <MetaData title="Contact-us"/>
     <h1 className="contactHeading">Feel Free To Contact Us</h1>
       <div className="contactContainer">
         <div className="column bb" style={{ borderRight: "1px solid lightgrey" }}>

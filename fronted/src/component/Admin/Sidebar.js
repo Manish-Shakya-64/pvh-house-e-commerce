@@ -1,6 +1,5 @@
 import React from "react";
 import "./sidebar.css";
-import logo from "../../images/logo.png";
 import { Link } from "react-router-dom";
 import { TreeView, TreeItem } from "@material-ui/lab";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -11,12 +10,14 @@ import ListAltIcon from "@material-ui/icons/ListAlt";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import PeopleIcon from "@material-ui/icons/People";
 import RateReviewIcon from "@material-ui/icons/RateReview";
+import pvhlogo from "../../images/pvhlogo.png";
+
 
 const Sidebar = () => {
   return (
     <div className="sidebar">
       <Link to="/">
-        <img src={logo} alt="Ecommerce" />
+        <img src={pvhlogo} alt="Ecommerce" className="logo"/>
       </Link>
       <Link to="/admin/dashboard">
         <p>
