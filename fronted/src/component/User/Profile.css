@@ -23,7 +23,7 @@
   .profileContainer > div:first-child > h1 {
     color: rgba(0, 0, 0, 0.555);
     font: 500 2.2vmax "Roboto";
-    transform: translateX(-10vmax) translateY(-2vmax);
+    transform: translateX(0vmax) translateY(-2vmax);
   }
   
   .profileContainer > div:first-child > img {
@@ -64,12 +64,12 @@
   
   .profileContainer > div:last-child > div > h4 {
     color: black;
-    font: 400 1.2vmax "Roboto";
+    font: 400 1.4vmax "Roboto";
   }
   
   .profileContainer > div:last-child > div > p {
-    color: rgba(0, 0, 0, 0.6);
-    font: 400 1vmax cursive;
+    color: rgba(0, 0, 0, 0.7);
+    font: 400 1.1vmax "Roboto";
     margin: 0.2vmax;
   }
   

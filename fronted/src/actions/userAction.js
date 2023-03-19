@@ -48,6 +48,10 @@ import {
   USER_DETAILS_SUCCESS,
   USER_DETAILS_FAIL,
 
+  CONTACT_REQUEST,
+  CONTACT_SUCCESS,
+  CONTACT_FAIL,
+
   CLEAR_ERRORS,
 } from "../constants/userConstants";
 import axios from "axios";
@@ -252,6 +256,24 @@ export const deleteUser = (id) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: DELETE_USER_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
+//contact us
+export const contactUs = (userData) => async (dispatch) => {
+  try {
+    dispatch({ type: CONTACT_REQUEST });
+
+    const config = { headers: { "Content-Type": "application/json" } };
+
+    const { data } = await axios.post(`/api/v1/contact/us`, userData, config);
+
+    dispatch({ type: CONTACT_SUCCESS, payload: data.message });
+  } catch (error) {
+    dispatch({
+      type: CONTACT_FAIL,
       payload: error.response.data.message,
     });
   }

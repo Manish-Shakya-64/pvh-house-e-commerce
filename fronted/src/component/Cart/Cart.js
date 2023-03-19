@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Cart.css";
 import CartItemCard from "./CartItemCard.js";
 import { useSelector, useDispatch } from "react-redux";
@@ -36,6 +36,10 @@ const Cart = () => {
   const checkoutHandler = () => {
     history("/login?redirect=/shipping");
   };
+
+  useEffect(() => {
+    
+  }, []);
 
   return (
     <>

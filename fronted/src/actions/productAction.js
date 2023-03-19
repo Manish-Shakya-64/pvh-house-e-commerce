@@ -59,7 +59,7 @@ export const getProduct = (keyword="",currentPage=1,price=[0,25000],category,rat
       type: ALL_PRODUCT_SUCCESS,
       payload: data,
     });
-    console.log(data)
+    // console.log(data)
   } catch (error) {
     dispatch({
       type: ALL_PRODUCT_FAIL,

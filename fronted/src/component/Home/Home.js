@@ -48,7 +48,7 @@ const Home = () => {
 
           <div className="container" id="container">
             {products &&
-              products.map((product) => <ProductCard product={product} />)}
+              products.map((product,index) => <ProductCard product={product} key={index} />)}
           </div>
           <div className="moreBtn">
             <Link to="/products">See All Products</Link>

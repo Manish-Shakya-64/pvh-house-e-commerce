@@ -310,3 +310,39 @@ exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
     message: "User Deleted Successfully",
   });
 });
+
+
+// contact us
+exports.contactUs = catchAsyncErrors(async (req, res, next) => {
+  // const { name, email, phone, message } = req.body;
+
+  try {
+    console.log(req.body)
+    await sendEmail({
+        email: "shakyamanish1702@gmail.com",
+        subject: `Contact`,
+        message:`
+        name:${req.body.name}
+
+        email: ${req.body.email}
+
+        phone: ${req.body.phone}
+        
+        message: ${req.body.msg}
+       `
+        ,
+      });
+
+      res.status(200).json({
+        success: true,
+        message: `Email sent successfully`,
+      })
+} catch (error) {
+    res.status(500).json({
+        success : false,
+        error : error.message
+    })
+    
+}
+  
+});

@@ -22,7 +22,7 @@ const Footer = () => {
 
       <div className="rightFooter">
         <h4>Follow Us</h4>
-        <a href="http://instagram.com/manish_tech_hacker/" target="_blank">Instagram</a>
+        <a href="http://instagram.com/manish_tech_hacker/" target="_blank" re>Instagram</a>
         <a href="#">Youtube</a>
         <a href="#">Facebook</a>
       </div>

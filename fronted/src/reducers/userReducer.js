@@ -50,6 +50,11 @@ import {
   USER_DETAILS_SUCCESS,
   USER_DETAILS_FAIL,
 
+  CONTACT_REQUEST,
+  CONTACT_SUCCESS,
+  CONTACT_FAIL,
+  CONTACT_RESET,
+
   CLEAR_ERRORS,
 } from "../constants/userConstants";
 
@@ -83,7 +88,7 @@ export const userReducer = (state = { user: {} }, action) => {
     case REGISTER_USER_FAIL:
       return {
         ...state,
-        loading: true,
+        loading: false,
         isAuthenticated: false,
         user: null,
         error: action.payload,
@@ -285,3 +290,43 @@ export const userDetailsReducer = (state = { user: {} }, action) => {
       return state;
   }
 };
+
+//contact reducer
+export const contactReducer = (state = {}, action) => {
+  switch (action.type) {
+    case CONTACT_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case CONTACT_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        message: action.payload,
+      };
+
+      case CONTACT_RESET:{
+        return{
+          ...state,
+          message:null
+        }
+      }
+
+    case CONTACT_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+
+    default:
+      return state;
+  }
+}

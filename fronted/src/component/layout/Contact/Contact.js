@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./contact.css";
 import { Typography } from "@material-ui/core";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
@@ -6,19 +6,59 @@ import CallRoundedIcon from "@material-ui/icons/CallRounded";
 import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined";
 import { useState } from "react";
 import MetaData from "../MetaData";
+import { useDispatch, useSelector } from "react-redux";
+import {useAlert} from 'react-alert'
+import { clearErrors, contactUs } from "../../../actions/userAction";
+import Loader from "../Loader/Loader";
+import { CONTACT_RESET } from "../../../constants/userConstants";
 const Contact = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [msg, setMsg] = useState("");
+  const dispatch = useDispatch();
+  const alert = useAlert();
+  const { loading, error, message } = useSelector(state => state.contact);
+
+  const submitHandler = (e) => { 
+    e.preventDefault() 
+    const data = {
+      name,
+      email,
+      phone,
+      msg
+    };
+    console.log(data)
+
+    dispatch(contactUs(data));
+
+  }
+
+  useEffect(() => {
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
+    if (message) {
+      alert.success(message);
+      setName("");
+      setEmail("");
+      setPhone("");
+      setMsg("");
+      dispatch({type:CONTACT_RESET});
+    }
+  }, [dispatch,error,message,alert]);
 
   return (
     <>
     <MetaData title="Contact-us"/>
-    <h1 className="contactHeading">Feel Free To Contact Us</h1>
+    {
+      loading ? <Loader/> :
+      <>
+      <h1 className="contactHeading">Feel Free To Contact Us</h1>
       <div className="contactContainer">
         <div className="column bb" style={{ borderRight: "1px solid lightgrey" }}>
-          <form>
+          <form onSubmit={submitHandler}>
             <div>
               <div>
                 <label htmlFor="name">Name : </label>
@@ -102,7 +142,8 @@ const Contact = () => {
             ></iframe>
           </div>
         </div>
-      </div>
+      </div></>
+    }
     </>
   );
 };

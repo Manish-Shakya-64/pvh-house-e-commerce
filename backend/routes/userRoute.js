@@ -12,6 +12,7 @@ const {
   getSingleUser,
   updateUserRole,
   deleteUser,
+  contactUs,
 } = require("../controllers/userController");
 const { isAuthenticatedUser, authorizeRoles } = require("../middleware/auth");
 const { route } = require("./productRoute");
@@ -40,6 +41,7 @@ router.route("/admin/user/:id").get(isAuthenticatedUser,authorizeRoles("admin"),
 router.route("/admin/user/:id").put(isAuthenticatedUser,authorizeRoles("admin"),updateUserRole);
 
 router.route("/admin/user/:_id").delete(isAuthenticatedUser,authorizeRoles("admin"),deleteUser);
+router.route("/contact/us").post(contactUs);
 
 
 module.exports = router;

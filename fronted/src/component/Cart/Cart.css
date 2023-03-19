@@ -87,7 +87,7 @@
     height: 8vmax;
     align-items: center;
     box-sizing: border-box;
-    font: 300 1vmax cursive;
+    font: 300 1.1vmax "Roboto";
     justify-content: flex-end;
     color: rgba(0, 0, 0, 0.753);
   }
@@ -102,7 +102,7 @@
     margin: 1vmax 4vmax;
     box-sizing: border-box;
     padding: 2vmax 0;
-    font: 300 1vmax "Roboto";
+    font: 300 1.2vmax "Roboto";
     display: flex;
     justify-content: space-between;
   }

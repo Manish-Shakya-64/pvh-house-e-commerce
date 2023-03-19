@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload')
 const cors = require('cors')
 const dotenv= require('dotenv');
+const sendEmail = require("./utils/sendEmail");
 
 
 // dot env confuguration
@@ -28,7 +29,11 @@ app.use("/api/v1", product);
 app.use("/api/v1", user);
 app.use("/api/v1", order);
 app.use("/api/v1",payment)
-
+// app.post(
+//     '/contact',async(req,res)=>{
+        
+//     }
+// )
 //middleware for error
 app.use(errormiddleware);
 
