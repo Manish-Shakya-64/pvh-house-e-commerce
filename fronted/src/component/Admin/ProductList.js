@@ -55,6 +55,7 @@ const ProductList = () => {
 
   const columns = [
     { field: "id", headerName: "Product ID", minWidth: 220, flex: 0.5 },
+    // { field: "category", headerName: "Category", minWidth: 220, flex: 0.5 },
 
     {
       field: "name",
@@ -119,6 +120,7 @@ const ProductList = () => {
     products.forEach((item) => {
       rows.push({
         id: item._id,
+        // category: item.category,
         stock: item.Stock,
         price: item.price,
         name: item.name,

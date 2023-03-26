@@ -41,6 +41,8 @@ import ProductReviews from "./component/Admin/ProductReviews.js";
 import About from "./component/layout/About/About";
 import Contact from "./component/layout/Contact/Contact";
 import Error404 from './component/Error/Error404'
+import CategoriesList from "./component/Admin/CategoriesList";
+import CreateCategory from "./component/Admin/CreateCategory";
 
 
 function App() {
@@ -166,6 +168,16 @@ function App() {
         )}
         {isAuthenticated && user?.role === "admin" ? (
           <Route exact path="/admin/reviews" element={<ProductReviews />} />
+          ) : (
+          <Route path="*" element={<Error404 />} />
+        )}
+        {isAuthenticated && user?.role === "admin" ? (
+          <Route exact path="/admin/categories" element={<CategoriesList />} />
+          ) : (
+          <Route path="*" element={<Error404 />} />
+        )}
+        {isAuthenticated && user?.role === "admin" ? (
+          <Route exact path="/admin/category" element={<CreateCategory />} />
           ) : (
           <Route path="*" element={<Error404 />} />
         )}

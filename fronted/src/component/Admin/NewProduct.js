@@ -13,6 +13,7 @@ import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 import SideBar from "./Sidebar";
 import { NEW_PRODUCT_RESET } from '../../constants/productConstant';
 import  {useNavigate} from 'react-router-dom'
+import { getCategories } from "../../actions/categoryAction";
 
 const NewProduct = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const NewProduct = () => {
   const history =  useNavigate();
 
   const { loading, error, success } = useSelector((state) => state.newProduct);
-
+  const {categories} = useSelector(state => state.categories)
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
   const [description, setDescription] = useState("");
@@ -29,17 +30,20 @@ const NewProduct = () => {
   const [images, setImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
 
-  const categories = [
-    "Bedsheets",
-    "Blankets",
-    "Pillow Covers",
-    "Galicha",
-    "Sofa Cover",
-    "Towels",
-    "Napkins",
-  ];
+  // const categories = [
+  //   "Bedsheets",
+  //   "Blankets",
+  //   "Pillow Covers",
+  //   "Galicha",
+  //   "Sofa Cover",
+  //   "Towels",
+  //   "Napkins",
+  // ];
 
   useEffect(() => {
+
+    dispatch(getCategories())
+
     if (error) {
       alert.error(error);
       dispatch(clearErrors());
@@ -139,8 +143,8 @@ const NewProduct = () => {
               <select onChange={(e) => setCategory(e.target.value)}>
                 <option value="">Choose Category</option>
                 {categories.map((cate) => (
-                  <option key={cate} value={cate}>
-                    {cate}
+                  <option key={cate._id} value={cate.name}>
+                    {cate.name}
                   </option>
                 ))}
               </select>

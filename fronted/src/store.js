@@ -20,6 +20,7 @@ import {
 } from "./reducers/userReducer";
 import { cartReducer } from "./reducers/cartReducer";
 import { allOrdersReducer, myOrdersReducer, newOrderReducer, orderDetailsReducer, orderReducer } from "./reducers/orderReducer";
+import { categoryReducer, deleteCategoryReducer, newCategoryReducer } from "./reducers/categoryReducer";
 
 const reducer = combineReducers({
   products: productsReducer,
@@ -41,6 +42,9 @@ const reducer = combineReducers({
   productReviews: productReviewsReducer,
   review : reviewReducer,
   contact : contactReducer,
+  categories: categoryReducer,
+  category : newCategoryReducer,
+  delCategory : deleteCategoryReducer,
   
 });
 

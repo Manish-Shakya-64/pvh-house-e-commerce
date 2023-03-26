@@ -16,6 +16,7 @@ import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 import SideBar from "./Sidebar";
 import { UPDATE_PRODUCT_RESET } from "../../constants/productConstant";
 import {useNavigate,useParams} from 'react-router-dom';
+import { getCategories } from "../../actions/categoryAction";
 
 const UpdateProduct = () => {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ const UpdateProduct = () => {
     const history = useNavigate();
     const {id} = useParams()
   const { error, product } = useSelector((state) => state.productDetails);
+  const {categories} = useSelector(state => state.categories)
 
   const {
     loading,
@@ -39,21 +41,24 @@ const UpdateProduct = () => {
   const [oldImages, setOldImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
 
-  const categories = [
-    "Laptop",
-    "Footwear",
-    "Bottom",
-    "Tops",
-    "Attire",
-    "Camera",
-    "SmartPhones",
-  ];
+  // const categories = [
+  //   "Laptop",
+  //   "Footwear",
+  //   "Bottom",
+  //   "Tops",
+  //   "Attire",
+  //   "Camera",
+  //   "SmartPhones",
+  // ];
 
   const productId = id;
 
   useEffect(() => {
+
+
     if (product && product._id !== productId) {
       dispatch(getProductDetails(productId));
+      dispatch(getCategories());
     } else {
       setName(product.name);
       setDescription(product.description);
@@ -180,8 +185,8 @@ const UpdateProduct = () => {
               >
                 <option value="">Choose Category</option>
                 {categories.map((cate) => (
-                  <option key={cate} value={cate}>
-                    {cate}
+                  <option key={cate._id} value={cate.name}>
+                    {cate.name}
                   </option>
                 ))}
               </select>
