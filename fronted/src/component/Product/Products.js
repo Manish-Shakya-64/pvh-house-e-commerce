@@ -10,19 +10,21 @@ import { Slider } from "@material-ui/core";
 import { useAlert } from "react-alert";
 import { Typography } from "@material-ui/core";
 import MetaData from "../layout/MetaData";
+import { getCategories } from "../../actions/categoryAction";
 
-const categories = [
-  "Bedsheets",
-  "Blankets",
-  "Pillow Covers",
-  "Galicha",
-  "Sofa Cover",
-  "Towels",
-  "Napkins",
-];
+// const categories = [
+//   "Bedsheets",
+//   "Blankets",
+//   "Pillow Covers",
+//   "Galicha",
+//   "Sofa Cover",
+//   "Towels",
+//   "Napkins",
+// ];
 
 const Products = () => {
   const { keyword } = useParams();
+  const {categories} = useSelector(state => state.categories);
 
   const alert = useAlert();
 
@@ -59,6 +61,7 @@ const Products = () => {
     }
 
     dispatch(getProduct(keyword, currentPage, price, category, ratings));
+    dispatch(getCategories());
   }, [dispatch, keyword, currentPage, price, category, ratings, alert, error]);
 
   let count = filteredProductsCount;
@@ -92,10 +95,10 @@ const Products = () => {
                 {categories.map((category) => (
                   <li
                     className="category-link"
-                    key={category}
-                    onClick={() => setCategory(category)}
+                    key={category._id}
+                    onClick={() => setCategory(category.name)}
                   >
-                    {category}
+                    {category.name}
                   </li>
                 ))}
               </ul>

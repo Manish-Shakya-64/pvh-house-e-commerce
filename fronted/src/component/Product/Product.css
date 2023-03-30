@@ -84,12 +84,17 @@
 }
 
 .filterBox > h3{
-  font-size: 1.5vmax;
+  font-size: 1.7vmax;
   font-family: "Roboto";
   text-align: center;
   border-bottom: 1px solid tomato;
   margin-bottom: 1vmax;
   padding: 1vmax;
+}
+
+.filterBox > p{
+  font-size: 1.3vmax;
+  font-family: "Roboto";
 }
 
 .categoryBox {
@@ -99,7 +104,7 @@
 .category-link {
   list-style: none;
   color: rgba(0, 0, 0, 0.61);
-  font: 400 0.8vmax "Roboto";
+  font: 400 1vmax "Roboto";
   margin: 0.4vmax;
   cursor: pointer;
   transition: all 0.5s;

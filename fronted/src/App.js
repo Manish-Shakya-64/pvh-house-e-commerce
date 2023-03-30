@@ -43,6 +43,7 @@ import Contact from "./component/layout/Contact/Contact";
 import Error404 from './component/Error/Error404'
 import CategoriesList from "./component/Admin/CategoriesList";
 import CreateCategory from "./component/Admin/CreateCategory";
+import UpdateCategory from "./component/Admin/UpdateCategory";
 
 
 function App() {
@@ -178,6 +179,11 @@ function App() {
         )}
         {isAuthenticated && user?.role === "admin" ? (
           <Route exact path="/admin/category" element={<CreateCategory />} />
+          ) : (
+          <Route path="*" element={<Error404 />} />
+        )}
+        {isAuthenticated && user?.role === "admin" ? (
+          <Route exact path="/admin/category/:id" element={<UpdateCategory />} />
           ) : (
           <Route path="*" element={<Error404 />} />
         )}

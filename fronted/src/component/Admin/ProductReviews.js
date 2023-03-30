@@ -69,14 +69,14 @@ const history = useNavigate();
       field: "user",
       headerName: "User",
       minWidth: 200,
-      flex: 0.5,
+      flex: 0.6,
     },
 
     {
       field: "comment",
       headerName: "Comment",
-      minWidth: 208,
-      flex: 0.8,
+      minWidth: 200,
+      flex: 0.7,
     },
 
     {

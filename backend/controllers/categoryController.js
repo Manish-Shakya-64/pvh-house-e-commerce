@@ -40,7 +40,6 @@ exports.getSingleCategory = catchAsyncErrors(async (req, res, next) => {
 exports.updateCategory = catchAsyncErrors(async (req, res, next) => {
 
     const {name} = req.body;
-    console.log(name);
     const category = await Category.findById(req.params.id);
     if (!category) {
         return next(new ErrorHandler(`Category not found with id : ${req.params.id}`, 404));

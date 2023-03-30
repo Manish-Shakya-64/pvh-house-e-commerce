@@ -24,7 +24,8 @@ import {
 
 export const newCategoryReducer = (state = { category: {} }, action) => {
   switch (action.type) {
-    case CREATE_CATEGORY_REQUEST:
+    case CREATE_CATEGORY_REQUEST,
+      UPDATE_CATEGORY_REQUEST:
       return {
         ...state,
         loading: true,
@@ -38,17 +39,28 @@ export const newCategoryReducer = (state = { category: {} }, action) => {
         message: action.payload.message,
       };
 
-    case CREATE_CATEGORY_FAIL:
+     case UPDATE_CATEGORY_SUCCESS:
+      return {
+        loading: false,
+        isUpdated: action.payload.success,
+        message: action.payload.message,
+      }; 
+
+    case CREATE_CATEGORY_FAIL,
+      UPDATE_CATEGORY_FAIL:
       return {
         ...state,
         error: action.payload,
       };
 
-    case CREATE_CATEGORY_RESET: {
+    case CREATE_CATEGORY_RESET.
+    UPDATE_CATEGORY_RESET: {
       return {
         ...state,
         success: false,
         message: null,
+        isCreated: false,
+        isUpdated: false,
       };
     }
 
@@ -81,6 +93,38 @@ export const categoryReducer = (state = { categories: [] }, action) => {
       };
 
     case GET_CATEGORIES_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+      };
+
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+
+    default:
+      return state;
+  }
+};
+
+// get category details reducer
+export const categoryDetailsReducer = (state = { category: {} }, action) => {
+  switch (action.type) {
+    case GET_CATEGORY_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+
+    case GET_CATEGORY_SUCCESS:
+      return {
+        loading: false,
+        category: action.payload,
+      };
+
+    case GET_CATEGORY_FAIL:
       return {
         ...state,
         error: action.payload,

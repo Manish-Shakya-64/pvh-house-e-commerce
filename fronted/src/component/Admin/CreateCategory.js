@@ -41,7 +41,7 @@ const CreateCategory = () => {
         if(isCreated){
             dispatch({type: CREATE_CATEGORY_RESET})
         }
-    }, [dispatch,alert,error,isCreated,navigate]);
+    }, [dispatch,alert,error,isCreated,navigate,message]);
 
   return (
     
@@ -60,7 +60,7 @@ const CreateCategory = () => {
             <div>
               <input
                 type="text"
-                placeholder="Product Name"
+                placeholder="Category Name"
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
