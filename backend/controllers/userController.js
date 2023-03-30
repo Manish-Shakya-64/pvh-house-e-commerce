@@ -317,7 +317,7 @@ exports.contactUs = catchAsyncErrors(async (req, res, next) => {
   // const { name, email, phone, message } = req.body;
 
   try {
-    console.log(req.body)
+    // console.log(req.body)
     await sendEmail({
         email: "shakyamanish1702@gmail.com",
         subject: `Contact`,

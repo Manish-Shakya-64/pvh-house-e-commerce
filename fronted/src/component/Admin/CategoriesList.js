@@ -18,7 +18,7 @@ const CategoriesList = () => {
 
     const {categories} = useSelector(state => state.categories);
     const {message} = useSelector(state => state.delCategory);
-    console.log(categories);
+    // console.log(categories);
     const dispatch = useDispatch();
     const alert = useAlert();
     const deleteCategoryHandler = (id) => {
