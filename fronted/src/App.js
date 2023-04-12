@@ -44,6 +44,7 @@ import Error404 from './component/Error/Error404'
 import CategoriesList from "./component/Admin/CategoriesList";
 import CreateCategory from "./component/Admin/CreateCategory";
 import UpdateCategory from "./component/Admin/UpdateCategory";
+import Reports from "./component/Admin/reports/Reports";
 
 
 function App() {
@@ -184,6 +185,11 @@ function App() {
         )}
         {isAuthenticated && user?.role === "admin" ? (
           <Route exact path="/admin/category/:id" element={<UpdateCategory />} />
+          ) : (
+          <Route path="*" element={<Error404 />} />
+        )}
+        {isAuthenticated && user?.role === "admin" ? (
+          <Route exact path="/admin/reports" element={<Reports />} />
           ) : (
           <Route path="*" element={<Error404 />} />
         )}

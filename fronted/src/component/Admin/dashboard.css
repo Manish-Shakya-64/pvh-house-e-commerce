@@ -4,6 +4,7 @@
     display: grid;
     grid-template-columns: 1fr 5fr;
     position: absolute;
+    height: 100vh;
   }
   
   .dashboardContainer {
@@ -17,7 +18,6 @@
     font: 300 2rem "Roboto";
     text-align: center;
     width: 50%;
-    padding: 1.5rem;
     margin: auto;
   }
   

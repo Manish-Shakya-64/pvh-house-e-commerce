@@ -10,6 +10,7 @@ import ListAltIcon from "@material-ui/icons/ListAlt";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import PeopleIcon from "@material-ui/icons/People";
 import RateReviewIcon from "@material-ui/icons/RateReview";
+import AssignmentOutlinedIcon from '@material-ui/icons/AssignmentOutlined';
 import pvhlogo from "../../images/pvhlogo.png";
 
 
@@ -71,6 +72,11 @@ const Sidebar = () => {
         <p>
           <RateReviewIcon />
           Reviews
+        </p>
+      </Link>
+      <Link to="/admin/reports">
+        <p>
+          <AssignmentOutlinedIcon /> Reports
         </p>
       </Link>
     </div>
