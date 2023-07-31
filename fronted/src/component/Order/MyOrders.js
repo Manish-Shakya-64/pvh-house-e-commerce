@@ -99,6 +99,18 @@ const MyOrders = () => {
 
   return (
     <>
+    {
+      orders?.length === 0 ? (
+        <>
+        <div className="emptyCart">
+
+          <Typography>No Oreders</Typography>
+          <Link to="/products">Create Your first Order</Link>
+        </div></>
+      ) :
+      (
+        <>
+        
       <MetaData title={`${user.name} - Orders`} />
 
       {loading ? (
@@ -116,7 +128,9 @@ const MyOrders = () => {
 
           <Typography id="myOrdersHeading">{user.name}'s Orders</Typography>
         </div>
-      )}
+      )}</>
+      )
+    }
     </>
   );
 };

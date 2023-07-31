@@ -20,9 +20,9 @@ const ConfirmOrder = () => {
       0
     );
   
-    const shippingCharges = subtotal > 1000 ? 0 : 200;
+    const shippingCharges = subtotal < 1000 ? 20 : 50;
   
-    const tax = subtotal * 0.18;
+    const tax = Math.round(subtotal * 0.05 );
   
     const totalPrice = subtotal + tax + shippingCharges;
   
@@ -90,15 +90,15 @@ const ConfirmOrder = () => {
               <div>
                 <div>
                   <p>Subtotal:</p>
-                  <span>₹{subtotal}</span>
+                  <span>₹{subtotal}.00</span>
                 </div>
                 <div>
                   <p>Shipping Charges:</p>
-                  <span>₹{shippingCharges}</span>
+                  <span>₹{shippingCharges}.00</span>
                 </div>
                 <div>
                   <p>GST:</p>
-                  <span>₹{tax}</span>
+                  <span>₹{tax}.00</span>
                 </div>
               </div>
   
@@ -106,7 +106,7 @@ const ConfirmOrder = () => {
                 <p>
                   <b>Total:</b>
                 </p>
-                <span>₹{Math.floor(totalPrice)}</span>
+                <span>₹{Math.floor(totalPrice)}.00</span>
               </div>
   
               <button onClick={proceedToPayment}>Proceed To Payment</button>

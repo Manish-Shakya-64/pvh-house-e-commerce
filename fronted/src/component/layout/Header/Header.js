@@ -7,8 +7,9 @@ import pvhlogo from "../../../images/pvhlogo.png";
 
 
 const options = {
-  // burgerColor:"#tomato",
-  burgerColorHover:"#eb4034",
+  burgerColor:"tomato",
+  burgerColorHover:"red",
+  // burgerColorHover:"#eb4034",
   logo: pvhlogo,
   logoWidth : "12vmax",
   navColor1 : "white",
